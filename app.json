@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/buy/buy",
+    "pages/mine/mine",
+    "pages/city/city",
+    "pages/myOrder/myOrder"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#e5443c",
+    "navigationBarTitleText": "探周边",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#e5443c",
+    "selectedColor": "#11cd6e",
+    "borderStyle":"white",
+    "list": [{
+      "selectedIconPath": "image/1-1.png",
+      "iconPath": "image/1.png",
+      "pagePath": "pages/index/index",
+      "text": "首页"
+    }, {
+      "selectedIconPath": "image/2-1.png",
+      "iconPath": "image/2.png",
+      "pagePath": "pages/buy/buy",
+      "text": "抢购"
+    },{
+      "selectedIconPath": "image/3-1.png",
+      "iconPath": "image/3.png",
+      "pagePath": "pages/mine/mine",
+      "text": "我的"
+    }]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+    }
+  }
+}
