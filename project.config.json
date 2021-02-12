@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -68,7 +68,7 @@
 				{
 					"id": 0,
 					"name": "pages/mine/mine",
-					"pathName": "pages/index/index",
+					"pathName": "pages/mine/mine",
 					"query": "",
 					"scene": null
 				},

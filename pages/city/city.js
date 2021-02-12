@@ -1,5 +1,6 @@
 // pages/city/city.js
 const base = require('../../utils/util').baseUrl
+const app = getApp()
 Page({
 
   /**
@@ -15,6 +16,7 @@ Page({
       'U','V','W','X','Y','Z'
     ],
     toView:null,
+    nowCity:''
   },
 
   click:function(e){
@@ -33,7 +35,8 @@ Page({
       url: base + 'city',
       success: (result)=>{
         that.setData({
-          city: result.data.city
+          city: result.data.city,
+          nowCity: app.globalData.glo_nowCity
         })
         console.log(that.data.city);
       },

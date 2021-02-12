@@ -7,16 +7,7 @@ Page({
   data: {
       banner:[],//轮播图数据
       nowCity:'',
-      iconLists:[ 
-        {'icon':'icon iconfont icon-huoguo','text':'火锅'},
-        {'icon':'icon iconfont icon-shousi','text':'寿司'},
-        {'icon':'icon iconfont icon-xia','text':'泰国料理'},
-        {'icon':'icon iconfont icon-youxi','text':'休闲娱乐'},
-        {'icon':'icon iconfont icon-kouhong','text':'美容美妆'},
-        {'icon':'icon iconfont icon-shaokao','text':'烧烤'},
-        {'icon':'icon iconfont icon-cake','text':'甜品'},
-        {'icon':'icon iconfont icon-naicha','text':'奶茶'}
-      ],
+      iconLists:[],
       restaurantList:[
         {url:'../../image/restaurant1.jpg',name:'小龙坎火锅'},
         {url:'../../image/restaurant2.jpg',name:'城门口老火锅'},
@@ -32,30 +23,46 @@ Page({
         {url:'../../image/restaurant4.jpg',name:'9.9元抢100元代金券'},
       ],
       restaurant:[
-        {
-        url:'../../image/restaurant1.jpg',
-        title:'太二酸菜鱼',
-        star: 4,
-        avarage:78,
-        type:'川湘菜',
-        distance:'1.02km'
-       },
-       {
-        url:'../../image/restaurant1.jpg',
-        title:'太二酸菜鱼',
-        star: 5,
-        avarage:78,
-        type:'川湘菜',
-        distance:'1.02km'
-       }
+      //   {
+      //   url:'../../image/restaurant1.jpg',
+      //   title:'太二酸菜鱼',
+      //   star: 4,
+      //   avarage:78,
+      //   type:'川湘菜',
+      //   distance:'1.02km'
+      //  },
+      //  {
+      //   url:'../../image/restaurant1.jpg',
+      //   title:'太二酸菜鱼',
+      //   star: 5,
+      //   avarage:78,
+      //   type:'川湘菜',
+      //   distance:'1.02km'
+      //  }
     ]
   },
   //事件处理函数
   bindViewTap: function() {
    
   },
-  //获取当前城市
-  getCity:function(){
+ 
+  onLoad: function () {
+    this.getBanner()
+    this.getCity()
+    this.getRestaurant()
+    this.geticonList()
+  },
+  getUserInfo: function(e) {
+   
+  },
+  toPage:function(){
+    wx.navigateTo({
+      url:"../city/city"
+    })
+    console.log(111);   
+  },
+   //获取当前城市
+   getCity:function(){
     const that = this
     wx.getLocation({
       success:function(value){
@@ -65,6 +72,9 @@ Page({
             that.setData({
               nowCity: data.data
             })
+            app.globalData.glo_nowCity = data.data
+            app.globalData.longitude = value.longitude
+            app.globalData.latitude = value.latitude
           }
       })
       }
@@ -86,17 +96,36 @@ Page({
       }
     })
   },
-  onLoad: function () {
-    this.getBanner()
-    this.getCity()
+  //获取iconList列表
+  geticonList:function(){
+    let that = this
+    wx.request({
+      url: baseUrl + `city/iconList`,
+      success: (result)=>{
+        that.setData({
+          iconLists: result.data 
+        })
+        console.log(result.data);
+      }
+    });
   },
-  getUserInfo: function(e) {
-   
-  },
-  toPage:function(){
-    wx.navigateTo({
-      url:"../city/city"
+  //获取餐厅列表
+  getRestaurant:function(){
+    let that = this
+    wx.getLocation({
+      success:function(value){
+        wx.request({
+          url: baseUrl + `restaurantList?longitude=${value.longitude}&latitude=${value.latitude}`,
+          success: (result)=>{
+            that.setData({
+              restaurant: result.data 
+            })
+            console.log(result.data);
+          },
+          fail: ()=>{},
+          complete: ()=>{}
+        });
+      }
     })
-    console.log(111);   
-  },
+  }
 })

@@ -1,4 +1,5 @@
 // pages/mine/mine.js
+var baseUrl = require('../../utils/util').baseUrl
 Page({
 
   /**
@@ -6,19 +7,65 @@ Page({
    */
   data: {
     avatarUrl:'',
-    name:''
+    name:'',
+    user: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (options) { 
+    let that = this
+    wx.checkSession({
+      success: (result)=>{
+        wx.getStorage({
+          key: 'session',
+          success: (result)=>{
+            that.getUser()
+          },
+        });
+      },
+      fail:()=>{
+        that.setData({
+          user:false
+        })
+      }
+    });
+  },
+  //获取用户信息
+  getUser:function(){
     let that = this
     wx.getUserInfo({
       success(res){
+        console.log(res,"用户数据");
         that.setData({
           avatarUrl : res.userInfo.avatarUrl,
-          name : res.userInfo.nickName
+          name : res.userInfo.nickName,
+          user: true
+        })
+        console.log(res.userInfo.avatarUrl);
+      },
+      fail:function(error){
+        console.log(error);
+      }
+    });
+  },
+  login:function(){
+    wx.login({
+      success:(result)=>{
+        var reqTask = wx.request({
+          url: baseUrl + 'login',
+          data: {
+            code: result.code
+          },
+          method: 'POST',
+          success:(res)=>{
+            wx.setStorage({
+              key: 'session',
+              data: res.data,
+            });
+           this.getUser()
+          }
         })
       }
     })

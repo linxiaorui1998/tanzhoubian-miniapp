@@ -34,6 +34,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    glo_nowCity: null,//当前城市,
+    longitude:null,//经度
+    latitude:null//纬度
   }
 })

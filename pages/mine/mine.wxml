@@ -2,9 +2,14 @@
 <view>
   <!-- <image src="../../image/view.jpg" class="body"></image> -->
   <!-- 头部头像和昵称 -->
-  <view class="head">
+  <view class="head" wx:if="{{user}}">
     <image src="{{avatarUrl}}" class="head-image"></image> 
     <text class="head-text">{{name}}</text>
+  </view>
+  <view class="head" wx:if="{{!user}}">
+    <icon class="icon iconfont icon-weidenglutouxiang image1"></icon>
+    <span class="head-text" style="margin-right:10rpx" bind:tap="login">登陆 /</span>
+    <span class="head-text">注册</span>
   </view>
 
   <!-- 我的订单部分 -->

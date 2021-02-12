@@ -10,7 +10,7 @@
         </view>
         
         <view class="nowCity">
-            <text class="nowCityName">广州</text>  
+            <text class="nowCityName">{{nowCity}}</text>  
         </view>
         
         <view class="title">

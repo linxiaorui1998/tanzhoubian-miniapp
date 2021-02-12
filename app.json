@@ -4,7 +4,8 @@
     "pages/buy/buy",
     "pages/mine/mine",
     "pages/city/city",
-    "pages/myOrder/myOrder"
+    "pages/myOrder/myOrder",
+    "pages/type/type"
   ],
   "window": {
     "backgroundTextStyle": "light",

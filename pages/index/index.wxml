@@ -10,7 +10,7 @@
         </view>
     </view>
 
-    <!-- 轮播图 -->
+    <!-- 轮播图 --> 
     <view class="swiper" > 
         <swiper style="width:95%;height:100%;margin: 0 auto;" indicator-dots="true" autoplay="true">
             <swiper-item wx:for="{{banner}}" wx:key="index">
@@ -65,12 +65,13 @@
         <!-- 餐厅列表 -->
         <view class="restaurant">
             <view class="restaurant-item" wx:for="{{restaurant}}" wx:key="index">
-                <image src="{{item.url}}" class="img"></image>
+                <image  src="../../image/restaurant1.jpg" class="img"></image>
                 <view class="content">
-                       <view>{{item.title}}</view>
-                       <span wx:for="{{item.star}}" class="incon iconfont icon-xingxing" wx:key="index"></span>
-                       <span style="margin-left:10px;">￥{{item.avarage}}/人</span>
-                       <view>{{item.type}} {{item.distance}}</view>
+                       <view class="content-title">{{item.name}}</view>
+                       <span wx:for="{{item.score}}" class="incon iconfont icon-xingxing" wx:key="index"></span>
+                       <span style="margin-left:10px;font-size:12px">￥{{item.average}}/人</span>
+                       <view style="font-size:12px">{{item.type}} {{item.distance}}</view>
+                       <span class="content-guide">{{item.guide}}</span>
                 </view>
             </view>
         </view>
