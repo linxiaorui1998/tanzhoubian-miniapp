@@ -1,19 +1,31 @@
-// pages/type/type.js
+var baseUrl = require('../../utils/util').baseUrl
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    restaurant:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
+    var that = this
+    wx.request({
+      url: baseUrl + `restaurantList/type?type=${options.type}`,
+      success:function(data){
+        that.setData({
+          restaurant : data.data
+        })
+        console.log(data.data);
+      }
+  })
+  wx.setNavigationBarTitle({
+    title: options.type//页面标题为路由参数
+  })
+},
 
   /**
    * 生命周期函数--监听页面初次渲染完成

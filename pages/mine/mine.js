@@ -8,7 +8,7 @@ Page({
   data: {
     avatarUrl:'',
     name:'',
-    user: false
+    user: false,
   },
 
   /**
@@ -47,28 +47,35 @@ Page({
       },
       fail:function(error){
         console.log(error);
+       
       }
     });
   },
   login:function(){
-    wx.login({
-      success:(result)=>{
-        var reqTask = wx.request({
-          url: baseUrl + 'login',
-          data: {
-            code: result.code
-          },
-          method: 'POST',
-          success:(res)=>{
-            wx.setStorage({
-              key: 'session',
-              data: res.data,
-            });
-           this.getUser()
-          }
-        })
-      }
-    })
+    var that = this
+    setTimeout(function(){
+      wx.login({
+        success:(result)=>{
+          var reqTask = wx.request({
+            url: baseUrl + 'login',
+            data: {
+              code: result.code
+            },
+            method: 'POST',
+            success:(res)=>{
+              wx.setStorage(
+                {
+                key: 'session',
+                data: res.data,
+                }
+              );
+              that.getUser()
+            }
+          })
+        }
+      })
+    },2000)
+  
   },
   to:function(){
     wx.navigateTo({

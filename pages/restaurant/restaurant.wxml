@@ -1,0 +1,98 @@
+<view>
+    <view style="width:100%">
+        <image src="../../image/restaurant1.jpg" class="top-image"></image>
+    </view>
+
+    <!-- 返回按钮 -->
+    <view>
+        <i class="icon iconfont icon-arrow-right-copy" bind:tap="back"></i>
+    </view>
+      
+   <view class="content">
+       <h2>{{message.name}}</h2>
+       <span class="lian">连锁</span>
+       <view style="margin-top:10rpx"> 
+          <span wx:for="{{message.score}}" class="incon iconfont icon-xingxing" wx:key="index"></span>
+          <span style="margin-left:10rpx">￥{{message.average}}/每人</span>
+       </view>
+         <scroll-view  scroll-x="true" style="width: {{imageNUm}}; height: 200rpx;">
+            <view class="image-list">
+                <image src="../../image/restaurant1.jpg" class="image-item"></image>
+                <image src="../../image/restaurant1.jpg" class="image-item"></image>
+                <image src="../../image/restaurant1.jpg" class="image-item"></image>
+                <image src="../../image/restaurant1.jpg" class="image-item"></image>
+                <image src="../../image/restaurant1.jpg" class="image-item"></image>
+                <image src="../../image/restaurant1.jpg" class="image-item"></image>
+                <image src="../../image/restaurant1.jpg" class="image-item"></image>
+            </view>  
+        </scroll-view>
+        <!-- 引导语 -->
+        <view class="giude">
+            惠来县甜品饮品人气榜第五名
+        </view>
+          
+        <!-- 营业时间 -->
+          <view class="time">
+             <span>营业中</span>
+             <span>10：00~22：00</span>
+        </view>
+
+        <!-- 地址 -->
+        <view class="address">
+            <view style="float:left;width:60%">
+                 惠来县惠城镇南门大街金币家园首层19号铺面（瑞星咖啡旁）距您步行830米，需要90分钟
+            </view>
+            <view style="float:right;width:30%">
+                <view style="float:left;width:50%;" bind:tap="clickAddress">
+                    <p class="icon iconfont icon-quzheli p"></p>
+                    <text>去这里</text>
+                </view>
+                 <view style="float:left;width:50%;" bind:tap="tellPhone">
+                     <p class="icon iconfont icon-voipphone p"></p>
+                     <text>联系商家</text>
+                </view>
+            </view>
+        </view>
+          
+   </view>
+
+   <!-- 选项卡 -->
+   <view class="tab">
+     <van-tabs active="{{ active }}" bind:change="onChange">
+        <van-tab title="优惠">
+            <view wx:for="{{discounts}}" class="tab-item" wx:key="index">
+                <image src="../../image/restaurant1.jpg" mode="widthFix"></image>
+                <view class="message">
+                   <p>{{item.name}}</p>
+                   <p>{{item.guide}}</p>
+                   <view style="margin-top:40px;width:100%">
+                       <span style="color:red;font-size:16px">￥{{item.price}}</span>
+                       <span style="color:#888282;font-size:12px;margin:0 20px;text-decoration:line-through">￥{{item.lineactionPrice}}</span>
+                       <span style="font-size:14px;color:#ffffff;background-color:#fb791d;">抢购</span>
+                   </view>
+                </view>
+            </view>
+        </van-tab>
+        <van-tab title="菜品">
+            <view wx:for="{{menus}}" class="tab-item" wx:key="index">
+                <image src="../../image/restaurant1.jpg" mode="widthFix"></image>
+                <view class="message">
+                   <p>{{item.name}}</p>
+                   <p>{{item.guide}}</p>
+                   <view style="margin-top:40px;width:100%">
+                       <span style="color:red;font-size:16px">￥{{item.price}}</span>
+                   </view>
+                    <span class="{{item.supported ? 'supported' : 'support'}}" bind:tap="{{item.supported ? null :'support'}}" 
+                    data-ids="{{item._id}}" data-index="{{index}}">
+                       <i class="icon iconfont icon-good"></i>
+                       <i>{{item.support}}</i>
+                    </span>
+                </view>
+               
+            </view>
+        </van-tab>
+        <van-tab title="评价">评价</van-tab>
+     </van-tabs>
+   </view>
+</view>
+  

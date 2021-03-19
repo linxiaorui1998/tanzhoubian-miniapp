@@ -1,2 +1,17 @@
 <!--pages/type/type.wxml-->
-<text>pages/type/type.wxml</text>
+    <view class="near">
+        <!-- 餐厅列表 -->
+        <view class="restaurant">
+            <view class="restaurant-item" wx:for="{{restaurant}}" wx:key="index">
+                <image  src="../../image/restaurant1.jpg" class="img"></image>
+                <view class="content">
+                       <view class="content-title">{{item.name}}</view>
+                       <span wx:for="{{item.score}}" class="incon iconfont icon-xingxing" wx:key="index"></span>
+                       <span style="margin-left:10px;font-size:12px">￥{{item.average}}/人</span>
+                       <view style="font-size:12px">{{item.type}} {{item.distance}}</view>
+                       <span class="content-guide">{{item.guide}}</span>
+                </view>
+            </view>
+        </view>
+    </view>
+  

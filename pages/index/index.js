@@ -8,6 +8,12 @@ Page({
       banner:[],//轮播图数据
       nowCity:'',
       iconLists:[],
+      option1: [
+        { text: '全部商品', value: 0 },
+        { text: '新款商品', value: 1 },
+        { text: '活动商品', value: 2 },
+      ],
+      value:0,
       restaurantList:[
         {url:'../../image/restaurant1.jpg',name:'小龙坎火锅'},
         {url:'../../image/restaurant2.jpg',name:'城门口老火锅'},
@@ -41,11 +47,6 @@ Page({
       //  }
     ]
   },
-  //事件处理函数
-  bindViewTap: function() {
-   
-  },
- 
   onLoad: function () {
     this.getBanner()
     this.getCity()
@@ -59,7 +60,19 @@ Page({
     wx.navigateTo({
       url:"../city/city"
     })
-    console.log(111);   
+  },
+  toIconPage:function(e){
+    console.log(e);
+    let type = e.currentTarget.dataset.type
+    wx.navigateTo({
+      url:`../type/type?type=${type}`
+    })
+  },
+  toRestaurant:function(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url:`../restaurant/restaurant?id=${id}`
+    })
   },
    //获取当前城市
    getCity:function(){

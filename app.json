@@ -5,7 +5,8 @@
     "pages/mine/mine",
     "pages/city/city",
     "pages/myOrder/myOrder",
-    "pages/type/type"
+    "pages/type/type",
+    "pages/restaurant/restaurant"
   ],
   "window": {
     "backgroundTextStyle": "light",

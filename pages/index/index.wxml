@@ -20,7 +20,7 @@
     </view>
    <!-- 分类icon -->
     <view class="icon-list">
-        <view class="icon-item" wx:for="{{iconLists}}" wx:key="index">
+        <view class="icon-item" wx:for="{{iconLists}}" wx:key="index" bind:tap="toIconPage" data-type='{{item.text}}'>
             <icon class="{{item.icon}}"></icon>
             <text>{{item.text}}</text>
         </view>
@@ -47,33 +47,55 @@
     </view>
 
     <!-- 附近餐厅 -->
+    
     <view class="near">
-        <text class="title">附近的餐厅</text>
-        <view style="display:flex;width:100%;margin:20rpx 0;">
-            <view class="near-item">热门商圈</view>
-            <view class="near-item">全部菜系</view>
-            <view class="near-item">智能排序</view>
-            <view class="near-item">筛选</view>
+    <van-sticky >
+        <view style="background-color:#ffffff">
+              <text class="title" style="background-color:#ffffff">附近的餐厅</text> 
+           <view style="display:flex;width:100%;margin-top:20rpx;background-color:#ffffff">
+            <view class="near-item">
+                <van-dropdown-menu>
+                        <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="热门商圈"/>
+                </van-dropdown-menu>
+            </view>
+            <view class="near-item">
+                <van-dropdown-menu>
+                    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="菜系"/>
+                </van-dropdown-menu>
+            </view>
+            <view class="near-item">
+                <van-dropdown-menu>
+                        <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="智能排序"/>
+                </van-dropdown-menu>
+            </view>
+            <view class="near-item">
+                <van-dropdown-menu>
+                        <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="筛选"/>
+                </van-dropdown-menu>
+            </view>
         </view>
-
-        <view style="display:flex;width:100%;padding-right:10rpx">
+    
+        <view style="display:flex;width:100%;padding-right:10rpx;background-color:#ffffff">
             <view class="near-item2">星选餐厅</view>
             <view class="near-item2">排队取号</view>
             <view class="near-item2">预约订座</view>
         </view>
-
+        </view>
+     </van-sticky>
         <!-- 餐厅列表 -->
         <view class="restaurant">
-            <view class="restaurant-item" wx:for="{{restaurant}}" wx:key="index">
+            <view class="restaurant-item" wx:for="{{restaurant}}" wx:key="index" bind:tap="toRestaurant" data-id="{{item._id}}">
                 <image  src="../../image/restaurant1.jpg" class="img"></image>
                 <view class="content">
-                       <view class="content-title">{{item.name}}</view>
-                       <span wx:for="{{item.score}}" class="incon iconfont icon-xingxing" wx:key="index"></span>
-                       <span style="margin-left:10px;font-size:12px">￥{{item.average}}/人</span>
-                       <view style="font-size:12px">{{item.type}} {{item.distance}}</view>
-                       <span class="content-guide">{{item.guide}}</span>
+                    <view class="content-title">{{item.name}}</view>
+                    <span wx:for="{{item.score}}" class="incon iconfont icon-xingxing" wx:key="index"></span>
+                    <span style="margin-left:10px;font-size:12px">￥{{item.average}}/人</span>
+                    <view style="font-size:12px">{{item.type}} {{item.distance}}</view>
+                    <span class="content-guide">{{item.guide}}</span>
                 </view>
             </view>
         </view>
+       
     </view>
+  
 </view>
