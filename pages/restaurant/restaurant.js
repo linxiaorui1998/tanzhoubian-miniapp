@@ -66,6 +66,7 @@ Page({
               that.setData({
                 menus: data.data
               })
+              console.log(data);
             }
           })
       }
@@ -73,10 +74,10 @@ Page({
     wx.request({
       url: baseUrl + `restaurantList?longitude=${longitude}&latitude=${latitude}&id=${id}`,
       success:function(data){
+        console.log(data,"饭店");
         that.setData({
           message: data.data[0]
         })
-        console.log(data.data[0].backGroundColor);
         wx.setNavigationBarColor({
           frontColor: "#ffffff",
           backgroundColor: data.data[0].backGroundColor,     
@@ -123,10 +124,6 @@ Page({
       url:  baseUrl + `restauranMessage/changeSupport`,
       method: "POST",//指定请求方式，默认get
       data: { id: num,openid:this.data.openid},
-      header: {
-        //默认值'Content-Type': 'application/json'
-        // 'content-type': 'application/x-www-form-urlencoded' //post
-      },
       success: function (res) {
           if(res == 'ok') {
             wx.request({
@@ -140,6 +137,9 @@ Page({
           }
       }
     })
+  },
+  toPage:function(e){
+    wx.navigateTo({url:`../order/order?id=${e.currentTarget.dataset.ids}&type=discounts`})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

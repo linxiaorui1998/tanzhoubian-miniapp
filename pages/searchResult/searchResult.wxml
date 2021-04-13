@@ -1,0 +1,40 @@
+<!--pages/searchResult/searchResult.wxml-->
+<view>
+    <view  class="box">
+        <input placeholder="搜索餐厅，美食，优惠" class="input" :value="input"></input>
+        <i class="icon iconfont icon-iconfonticonfontsousuo1" ></i>
+    </view>
+    <view style="padding:0 20px;box-sizing:border-box;">
+        <van-tabs active="{{ active }}">
+            <van-tab title="商品">
+                        <!-- 餐厅列表 -->
+                <view class="restaurant">
+                    <view class="restaurant-item" wx:for="{{coupon}}" wx:key="index">
+                        <image  src="../../image/restaurant1.jpg" class="img"></image>
+                        <view class="content">
+                            <view class="content-title" style="margin-bottom:20px">{{item.name}}</view>
+                            <span>{{item.price}}元</span>
+                            <span style="text-decoration:line-through;margin-left:20px">{{item.lineactionPrice}}</span>
+                        </view>
+                    </view>
+                </view>
+            </van-tab>
+            <van-tab title="店铺">
+                 <!-- 餐厅列表 -->
+        <view class="restaurant">
+            <view class="restaurant-item" wx:for="{{restaurant}}" wx:key="index" bind:tap="toRestaurant" data-id="{{item._id}}">
+                <image  src="../../image/restaurant1.jpg" class="img"></image>
+                <view class="content">
+                    <view class="content-title">{{item.name}}</view>
+                    <span wx:for="{{item.score}}" class="incon iconfont icon-xingxing" wx:key="index"></span>
+                    <span style="margin-left:10px;font-size:12px">￥{{item.average}}/人</span>
+                    <view style="font-size:12px">{{item.type}} {{item.distance}}</view>
+                    <span class="content-guide">{{item.guide}}</span>
+                </view>
+            </view>
+        </view>
+            </van-tab>
+        </van-tabs>
+    </view>
+</view>
+  

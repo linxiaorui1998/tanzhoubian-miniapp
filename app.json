@@ -6,7 +6,13 @@
     "pages/city/city",
     "pages/myOrder/myOrder",
     "pages/type/type",
-    "pages/restaurant/restaurant"
+    "pages/restaurant/restaurant",
+    "pages/search/search",
+    "pages/searchResult/searchResult",
+    "pages/order/order",
+    "pages/isUse/isUse",
+    "pages/test/test"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

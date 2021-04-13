@@ -1,13 +1,12 @@
 <view>
     <view style="width:100%">
-        <image src="../../image/restaurant1.jpg" class="top-image"></image>
+        <image src="{{message.image}}" class="top-image"></image>
     </view>
 
     <!-- 返回按钮 -->
     <view>
         <i class="icon iconfont icon-arrow-right-copy" bind:tap="back"></i>
     </view>
-      
    <view class="content">
        <h2>{{message.name}}</h2>
        <span class="lian">连锁</span>
@@ -17,30 +16,27 @@
        </view>
          <scroll-view  scroll-x="true" style="width: {{imageNUm}}; height: 200rpx;">
             <view class="image-list">
-                <image src="../../image/restaurant1.jpg" class="image-item"></image>
-                <image src="../../image/restaurant1.jpg" class="image-item"></image>
-                <image src="../../image/restaurant1.jpg" class="image-item"></image>
-                <image src="../../image/restaurant1.jpg" class="image-item"></image>
-                <image src="../../image/restaurant1.jpg" class="image-item"></image>
-                <image src="../../image/restaurant1.jpg" class="image-item"></image>
-                <image src="../../image/restaurant1.jpg" class="image-item"></image>
+                <image src="../../image/restaurant2.jpg" class="image-item"></image>
+                <image src="../../image/restaurant3.jpg" class="image-item"></image>
+                <image src="../../image/restaurant4.jpg" class="image-item"></image>
+                <image src="../../image/restaurant5.jpg" class="image-item"></image>
             </view>  
         </scroll-view>
         <!-- 引导语 -->
         <view class="giude">
-            惠来县甜品饮品人气榜第五名
+           {{message.guide}}
         </view>
           
         <!-- 营业时间 -->
           <view class="time">
              <span>营业中</span>
-             <span>10：00~22：00</span>
+             <span>{{message.beginTime}}~{{message.endTime}}</span>
         </view>
 
         <!-- 地址 -->
         <view class="address">
             <view style="float:left;width:60%">
-                 惠来县惠城镇南门大街金币家园首层19号铺面（瑞星咖啡旁）距您步行830米，需要90分钟
+                 {{message.addressGuide}}
             </view>
             <view style="float:right;width:30%">
                 <view style="float:left;width:50%;" bind:tap="clickAddress">
@@ -60,7 +56,7 @@
    <view class="tab">
      <van-tabs active="{{ active }}" bind:change="onChange">
         <van-tab title="优惠">
-            <view wx:for="{{discounts}}" class="tab-item" wx:key="index">
+            <view wx:for="{{discounts}}" class="tab-item" wx:key="index" bind:tap="toPage" data-ids="{{item._id}}">
                 <image src="../../image/restaurant1.jpg" mode="widthFix"></image>
                 <view class="message">
                    <p>{{item.name}}</p>

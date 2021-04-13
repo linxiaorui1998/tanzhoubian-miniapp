@@ -1,0 +1,30 @@
+/* pages/order/order.wxss */
+.box {
+    padding: 10px;
+    box-sizing: border-box;
+}
+.name{
+    font-size: 20px;
+    font-weight: 600;
+    margin-top:10px
+}
+.text {
+    font-size: 12px;
+}
+.img {
+    width: 100%;
+}
+.but{
+   position:fixed;
+   bottom:40px;
+   left:50%;
+   transform: translateX(-50%);
+}
+.icon-arrow-right-copy {
+    color: #ffffff;
+    font-size: 24px;
+    /* font-weight: 600; */
+    position: fixed;
+    top: 30px;
+    left: 10px;  
+}

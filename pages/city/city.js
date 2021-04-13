@@ -24,7 +24,26 @@ Page({
       toView:e.currentTarget.id
     })
     wx.showToast({title:e.currentTarget.id,icon:'none'})
-    
+  },
+  sel:function(e){
+    let that = this
+    wx.request({
+      url: base + `city/selCity?address=${e.currentTarget.dataset.nowcity}`,//获取小程序定位接口，base是定义的请求路径的基路径
+      success: (result)=>{
+        console.log(result);
+        app.globalData.glo_nowCity = e.currentTarget.dataset.nowcity
+        app.globalData.longitude = result.data.split(',')[0]
+        app.globalData.latitude = result.data.split(',')[1]
+        app.globalData.glo_nowCity = e.currentTarget.dataset.nowcity
+        wx.switchTab({
+          url:"../index/index"
+        })
+        console.log(app.globalData);
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
+     
   },
   /**
    * 生命周期函数--监听页面加载
@@ -32,7 +51,7 @@ Page({
   onLoad: function (options) {
     let that = this
    wx.request({
-      url: base + 'city',
+      url: base + 'city',//获取小程序定位接口，base是定义的请求路径的基路径
       success: (result)=>{
         that.setData({
           city: result.data.city,

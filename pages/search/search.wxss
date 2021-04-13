@@ -1,0 +1,30 @@
+/* pages/search/search.wxss */
+.input {
+  background-color: #f7f7f7; 
+  width: 90%;
+  height: 70rpx;
+  border-radius: 30rpx;
+  margin: 0 auto ;
+  padding-left: 40px;
+  box-sizing: border-box;
+  color: black;
+}
+.box {
+  margin:20px 0;
+  position: relative;
+}
+.item {
+    padding: 5px 10px;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+    margin: 10px;
+    border-radius: 15px;
+    font-size: 13px;
+}
+.iconfont {
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    font-size: 20px;
+    color: black;
+}

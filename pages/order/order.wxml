@@ -1,0 +1,19 @@
+<view>
+    <view class="title">
+         <image class="img" src="../../image/restaurant1.jpg"/>
+         <view style="padding:20px;box-sizing:border-box">
+            <span style="color:red">￥{{message.price}}元</span>
+            <span style="float:right">已售{{message.sold}}</span>
+             <view>
+                 <p class="name">{{message.name}}</p>
+                <span style="font-size:14px;color:#ffca28">{{message.guide}}</span>
+             </view>
+            <view>
+                <span class="text">随时退|免预约|过期自动退</span>
+            </view>
+         </view>
+         <van-button type="warning" class="but" bind:tap="buy">购买</van-button>
+         <i class="icon iconfont icon-arrow-right-copy"  bind:tap="back"></i>
+    </view>
+</view>
+  

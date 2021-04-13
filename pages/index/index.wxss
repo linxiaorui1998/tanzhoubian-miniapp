@@ -55,8 +55,8 @@
 }
 .time {
   width: 100%;
-  height: 600rpx;
-  /* background-color:red; */
+  height: auto;
+  overflow: hidden;
 }
 .hot {
   width: 100%;

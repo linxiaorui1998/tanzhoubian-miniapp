@@ -78,6 +78,24 @@
         {
           "name": "pages/restaurant/restaurant",
           "pathName": "pages/restaurant/restaurant",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/order/order",
+          "pathName": "pages/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/isUse/isUse",
+          "pathName": "pages/isUse/isUse",
           "scene": null
         }
       ]

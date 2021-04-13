@@ -5,8 +5,8 @@
             <icon class="icon iconfont icon-ai-arrow-down"></icon>
             <text>{{nowCity ? nowCity : '暂无'}}</text>
         </view>
-        <view class="search">
-            <input placeholder="搜索餐厅，美食，优惠" class="input"></input>
+        <view class="search" bindtap="topage1">
+            <input placeholder="搜索餐厅，美食，优惠" class="input" ></input>
         </view>
     </view>
 
@@ -27,7 +27,7 @@
     </view>
 
     <!-- 火爆餐厅 -->
-    <view class="hot">
+    <!-- <view class="hot">
         <text class="title">火爆餐厅</text>
         <view class="hot-list">
             <view class="hot-item" wx:for="{{restaurantList}}"  wx:key="index"> 
@@ -35,15 +35,16 @@
                 <text style="display:block;font-size:26rpx;font-weight:700">{{item.name}}</text>
             </view>
         </view>
-    </view>
+    </view> -->
 
     <!-- 限时特惠 -->
     <view class="time">
         <text class="title" style="display:block">限时特惠</text>
-        <view class="time-item" wx:for="{{timeList}}"  wx:key="index">
-            <image src="{{item.url}}"></image>
+        <view class="time-item" wx:for="{{timeList}}"  wx:key="index" bind:tap="buy" data-id="{{item._id}}">
+            <image src="{{item.image}}"></image>
             <text style="display:block;font-size:26rpx;font-weight:700">{{item.name}}</text>
         </view>
+        <view class="clear:both"></view>
     </view>
 
     <!-- 附近餐厅 -->
@@ -53,42 +54,42 @@
         <view style="background-color:#ffffff">
               <text class="title" style="background-color:#ffffff">附近的餐厅</text> 
            <view style="display:flex;width:100%;margin-top:20rpx;background-color:#ffffff">
-            <view class="near-item">
+            <!-- <view class="near-item">
                 <van-dropdown-menu>
                         <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="热门商圈"/>
                 </van-dropdown-menu>
-            </view>
+            </view> -->
             <view class="near-item">
                 <van-dropdown-menu>
-                    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="菜系"/>
+                    <van-dropdown-item value="{{ value }}" options="{{ option1 }}" title="菜系" bind:change="select"/>
                 </van-dropdown-menu>
             </view>
-            <view class="near-item">
+            <!-- <view class="near-item">
                 <van-dropdown-menu>
-                        <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="智能排序"/>
+                        <van-dropdown-item value="{{ value1 }}" options="{{ option2 }}" title="智能排序"/>
                 </van-dropdown-menu>
-            </view>
+            </view> -->
             <view class="near-item">
                 <van-dropdown-menu>
-                        <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" title="筛选"/>
+                        <van-dropdown-item value="{{ value }}" options="{{ option3 }}" bind:change="select1" title="筛选"/>
                 </van-dropdown-menu>
             </view>
         </view>
     
         <view style="display:flex;width:100%;padding-right:10rpx;background-color:#ffffff">
-            <view class="near-item2">星选餐厅</view>
+            <!-- <view class="near-item2">星选餐厅</view>
             <view class="near-item2">排队取号</view>
-            <view class="near-item2">预约订座</view>
+            <view class="near-item2">预约订座</view> -->
         </view>
         </view>
      </van-sticky>
         <!-- 餐厅列表 -->
         <view class="restaurant">
             <view class="restaurant-item" wx:for="{{restaurant}}" wx:key="index" bind:tap="toRestaurant" data-id="{{item._id}}">
-                <image  src="../../image/restaurant1.jpg" class="img"></image>
+                <image  src="{{item.image}}" class="img"></image>
                 <view class="content">
                     <view class="content-title">{{item.name}}</view>
-                    <span wx:for="{{item.score}}" class="incon iconfont icon-xingxing" wx:key="index"></span>
+                    <span wx:for="{{item.score}}" class="icon iconfont icon-xingxing" wx:key="index"></span>
                     <span style="margin-left:10px;font-size:12px">￥{{item.average}}/人</span>
                     <view style="font-size:12px">{{item.type}} {{item.distance}}</view>
                     <span class="content-guide">{{item.guide}}</span>

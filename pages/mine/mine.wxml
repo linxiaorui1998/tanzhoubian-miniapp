@@ -8,9 +8,13 @@
   </view>
   <view class="head" wx:if="{{!user}}" >
     <icon class="icon iconfont icon-weidenglutouxiang image1"></icon>
-    <!-- <span class="head-text" style="margin-right:10rpx" >登陆 /</span> -->
-    <button open-type='getUserInfo'  bindgetuserinfo='userinfo' bind:tap="login" class="head-text">点击登录</button>
+    <button open-type='getUserInfo'   bind:tap="login" class="head-text">点击登录</button>
+     <!-- <span class="head-text" style="margin-right:10rpx" >登陆 /</span> -->
     <!-- <span class="head-text">注册</span> -->
+
+    <!-- <open-data type="userAvatarUrl" class="head-image"></open-data>
+    <open-data type="userNickName" class="head-text"></open-data>
+    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button> -->
   </view>
   
   <!-- 我的订单部分 -->
@@ -25,7 +29,7 @@
             <icon class="icon iconfont icon-daifukuan" style="color:#18cf9f;"></icon>
             <view>代付款</view>
         </view>
-        <view class="order-icon">
+        <view class="order-icon" bind:tap="isUse">
             <icon class="icon iconfont icon-shiyongwendang" style="color:#6ab3f8;"></icon>
             <view>可使用</view>
         </view>
@@ -60,7 +64,7 @@
             <icon style="float:right;" class="icon iconfont icon-arrow-right"></icon>  
             <text style="float:right;">17876659083</text>
         </view>
-        <view class="box-item"> 
+        <view class="box-item" bindtap="goto"> 
             <icon class="icon iconfont icon-weibiaoti-"></icon>联系我们
             <icon style="float:right;" class="icon iconfont icon-arrow-right"></icon>  
             <text style="float:right;">17876659083</text>

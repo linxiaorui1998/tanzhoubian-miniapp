@@ -1,0 +1,13 @@
+<!--pages/search/search.wxml-->
+<view>
+    <view  class="box">
+        <input placeholder="搜索餐厅，美食，优惠" class="input" bindinput="input"></input>
+        <i class="icon iconfont icon-iconfonticonfontsousuo1" bind:tap="search"></i>
+    </view>
+    <view style="margin:20px">
+        <p style="display:block;margin:20px">热门搜索</p>
+        <span wx:for="{{hotSearch}}" class="item" bind:tap="select" data-item = "{{item}}" wx:key="index">{{item}}</span>
+    </view>
+      
+</view>
+  

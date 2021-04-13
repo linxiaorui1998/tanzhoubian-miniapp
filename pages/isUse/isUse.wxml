@@ -1,0 +1,13 @@
+ <view class="restaurant">
+    <view class="restaurant-item">
+        <image  src="../../image/restaurant1.jpg" class="img"></image>
+        <view class="content">
+            <view>98元牛肉火锅套餐</view>
+            <view>53元</view>
+            <button bind:tap="reateQrcode">使用</button>  
+        </view>
+    </view>
+    <canvas class="code" canvas-id="myQrcode"
+     style="background:red;width: 200rpx;height:200rpx;" wx:if="{{show}}"/>
+     <!-- <button class="down" bindtap="saveQrcode">保存到手机相册</button> -->
+</view>

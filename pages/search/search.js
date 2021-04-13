@@ -1,35 +1,41 @@
-// pages/buy/buy.js
-var baseUrl = require('../../utils/util')
+// pages/search/search.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    timeList:[]
+    hotSearch:['火锅','自助餐','寿司','韩料'],
+    input:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  getApi(){
-    let that = this
-    wx.request({
-      url:baseUrl + `search/couponList`,
-      success:function(data){
-        that.setData({
-          timeList:data.data
-        })
-        console.log('触发');
-      }
-  })
+  onLoad: function (options) {
+
   },
-  onLoad: function () {
-    // console.log(111);
-    
-  console.log('大傻逼')
+  select:function(e){
+    this.setData({
+      input:e.currentTarget.dataset.item
+    })
+    this.search()
+  },
+  input:function(event){
+    this.setData({
+      input:event.detail.value
+    })
+  },
+  search:function(){
+    wx.navigateTo({
+      url:'../searchResult/searchResult?value=' + this.data.input
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-   
+
   },
 
   /**

@@ -19,7 +19,7 @@
 
         <view class="hotCity">
         <view class="hotCityName" wx:for="{{hotCity}}" wx:key="index">
-            <view class="name">{{item}}</view>  
+            <view class="name" bind:tap="sel" data-nowCity="{{item}}">{{item}}</view>  
         </view>  
         </view>
         <!-- 所有城市 -->
@@ -29,7 +29,7 @@
             </view>
             <view>
             <view wx:for="{{item.lists}}" wx:key="index" wx:for-item="items">
-                <view class="allCityItem">{{items}}</view>
+                <view class="allCityItem"  bind:tap="sel" data-nowCity="{{items}}">{{items}}</view>
             </view>  
             </view>
         </view>

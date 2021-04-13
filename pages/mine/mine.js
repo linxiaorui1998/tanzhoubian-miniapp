@@ -1,14 +1,12 @@
 // pages/mine/mine.js
-var baseUrl = require('../../utils/util').baseUrl
+const app = getApp()
+var baseUrl = require('../../utils/util')
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     avatarUrl:'',
     name:'',
     user: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   /**
@@ -16,6 +14,18 @@ Page({
    */
   onLoad: function (options) { 
     let that = this
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+              console.log(res.userInfo)
+            }
+          })
+        }
+      }
+    }),
     wx.checkSession({
       success: (result)=>{
         wx.getStorage({
@@ -32,29 +42,50 @@ Page({
       }
     });
   },
+  bindGetUserInfo (e) {
+    console.log(e.detail.userInfo)
+  },
   //获取用户信息
-  getUser:function(){
+  getUserInfo:function(){
     let that = this
     wx.getUserInfo({
       success(res){
-        console.log(res,"用户数据");
+        console.log(res,"成功");
         that.setData({
           avatarUrl : res.userInfo.avatarUrl,
           name : res.userInfo.nickName,
           user: true
         })
-        console.log(res.userInfo.avatarUrl);
       },
       fail:function(error){
-        console.log(error);
-       
+        console.log(error,"失败");
       }
     });
+  },
+  // getNoUseOrder:function (params) {
+  //   let openid = null
+  //   wx.getStorage({
+  //     key:'session',
+  //     success:function (params) {
+  //       openid = params.data.openid
+  //     }
+  //   })
+  //   wx.request({
+  //     url: baseUrl + `order/nouse?openid=${openid}`,
+  //     success:function(data){
+  //       console.log(data);
+  //     }
+  //    })
+  // },
+  goto:function(){
+    wx.navigateTo({
+      url: '../test/test',
+    })
   },
   login:function(){
     var that = this
     setTimeout(function(){
-      wx.login({
+      wx.login({//首先调用微信官方登录接口获取用户信息，然后发动请求到后端，
         success:(result)=>{
           var reqTask = wx.request({
             url: baseUrl + 'login',
@@ -63,13 +94,14 @@ Page({
             },
             method: 'POST',
             success:(res)=>{
+              console.log(res);
               wx.setStorage(
                 {
                 key: 'session',
                 data: res.data,
                 }
               );
-              that.getUser()
+              that.getUserInfo()
             }
           })
         }
@@ -80,6 +112,11 @@ Page({
   to:function(){
     wx.navigateTo({
       url: '../myOrder/myOrder',
+    });
+  },
+  isUse:function() {
+    wx.navigateTo({
+      url: '../isUse/isUse',
     });
   },
   /**

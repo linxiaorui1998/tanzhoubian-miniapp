@@ -1,2 +1,10 @@
 <!--pages/buy/buy.wxml-->
-<text>pages/buy/buy.wxml</text>
+<!-- 限时特惠 -->
+<view class="time">
+    <!-- <text class="title" style="display:block">限时特惠</text> -->
+    <view class="time-item" wx:for="{{timeList}}"  wx:key="index">
+        <image src="{{item.image}}"></image>
+        <text style="display:block;font-size:26rpx;font-weight:700">{{item.name}}</text>
+    </view>
+    <view class="clear:both"></view>
+</view>
