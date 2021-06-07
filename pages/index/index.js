@@ -41,7 +41,7 @@ Page({
     this.getTime()
   },
   onShow: function () {
-    this.getCity()
+    // this.getCity()
    
   },
   toPage:function(){
@@ -79,7 +79,7 @@ Page({
       }
   },
   buy:function(e){
-    wx.navigateTo({url:`../order/order?id=${e.currentTarget.dataset.id}&type=coupons`})
+    wx.navigateTo({url:`../order/order?id=${e.currentTarget.dataset.id}&type=coupons&restaurantID=${e.currentTarget.dataset.restaurantid}`})
   },
   topage1:function(){
     wx.navigateTo({
@@ -104,6 +104,7 @@ Page({
     wx.request({
       url:baseUrl + `search/couponList`,
       success:function(data){
+        console.log(data,"限时");
         that.setData({
           timeList:data.data
         })
@@ -116,6 +117,7 @@ Page({
       const that = this
       wx.getLocation({
         success:function(value){
+          console.log(value,"当前位置");
           wx.request({
             url:baseUrl + `city/local?key=6325483d7a196109808539ae8bf3f732&location=${value.longitude},${value.latitude}`,
             success:function(data){
@@ -156,11 +158,10 @@ Page({
     wx.request({
       url: 'http://127.0.0.1:3000/banner',
       success:function(data){
-        let  data1 = data.data.map((item)=>{ return item.url = baseUrl + item.url})
-        console.log(data1);
         that.setData({
-          banner:data1
+          banner:data.data
         })
+        console.log(data.data,"我是轮播图");
       }
     })
   },

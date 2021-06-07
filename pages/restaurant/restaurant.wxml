@@ -11,7 +11,7 @@
        <h2>{{message.name}}</h2>
        <span class="lian">连锁</span>
        <view style="margin-top:10rpx"> 
-          <span wx:for="{{message.score}}" class="incon iconfont icon-xingxing" wx:key="index"></span>
+          <span wx:for="{{message.score}}" class="icon iconfont icon-xingxing" wx:key="index"></span>
           <span style="margin-left:10rpx">￥{{message.average}}/每人</span>
        </view>
          <scroll-view  scroll-x="true" style="width: {{imageNUm}}; height: 200rpx;">
@@ -71,7 +71,7 @@
         </van-tab>
         <van-tab title="菜品">
             <view wx:for="{{menus}}" class="tab-item" wx:key="index">
-                <image src="../../image/restaurant1.jpg" mode="widthFix"></image>
+                <image src="{{item.image}}" mode="widthFix"></image>
                 <view class="message">
                    <p>{{item.name}}</p>
                    <p>{{item.guide}}</p>

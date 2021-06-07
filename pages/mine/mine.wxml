@@ -2,19 +2,15 @@
 <view>
   <!-- <image src="../../image/view.jpg" class="body"></image> -->
   <!-- 头部头像和昵称 -->
-  <view class="head" wx:if="{{user}}">
-    <image src="{{avatarUrl}}" class="head-image"></image> 
-    <text class="head-text">{{name}}</text>
+  <view class="head" wx:if="{{!user}}">
+    <!-- <image src="{{avatarUrl}}" class="head-image"></image> 
+    <text class="head-text">{{name}}</text> -->
+    <icon class="icon iconfont icon-weidenglutouxiang image1" wx:if="{{!user}}"></icon>
+    <button open-type='getUserInfo'   bind:tap="login" class="head-text" wx:if="{{!user}}">点击登录</button>
   </view>
-  <view class="head" wx:if="{{!user}}" >
-    <icon class="icon iconfont icon-weidenglutouxiang image1"></icon>
-    <button open-type='getUserInfo'   bind:tap="login" class="head-text">点击登录</button>
-     <!-- <span class="head-text" style="margin-right:10rpx" >登陆 /</span> -->
-    <!-- <span class="head-text">注册</span> -->
-
-    <!-- <open-data type="userAvatarUrl" class="head-image"></open-data>
+  <view class="head" wx:if="{{user}}" id="head1">
+    <open-data type="userAvatarUrl" class="head-image"></open-data>
     <open-data type="userNickName" class="head-text"></open-data>
-    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button> -->
   </view>
   
   <!-- 我的订单部分 -->
@@ -25,23 +21,19 @@
       </view>
 
       <view class="icon-list">
-        <view class="order-icon">
-            <icon class="icon iconfont icon-daifukuan" style="color:#18cf9f;"></icon>
-            <view>代付款</view>
-        </view>
         <view class="order-icon" bind:tap="isUse">
             <icon class="icon iconfont icon-shiyongwendang" style="color:#6ab3f8;"></icon>
             <view>可使用</view>
         </view>
-         <view class="order-icon">
+         <view class="order-icon" bind:tap="Used">
             <icon class="icon iconfont icon-daishouhuo" style="color:#87d1ff;"></icon>
-            <view>待收货</view>
+            <view>已使用</view>
         </view>
-         <view class="order-icon">
+         <view class="order-icon" bind:tap="noCommend">
             <icon class="icon iconfont icon-pingjia" style="color:#f5948d;"></icon>
             <view>待评价</view>
         </view>
-         <view class="order-icon">
+         <view class="order-icon" bind:tap="refund">
             <icon class="icon iconfont icon-tuikuan" style="color:#f4ea2a;"></icon>
             <view>退款/售后</view>
         </view>
@@ -50,24 +42,23 @@
 
   <view class="box">
         <view class="box-item"> 
-            <icon class="icon iconfont icon-icon"></icon>手机号
+            <icon class="icon iconfont icon-icon"></icon>我的评论
             <icon style="float:right;" class="icon iconfont icon-arrow-right"></icon>  
             <text style="float:right;">17876659083</text>
         </view>
-        <view class="box-item"> 
+        <view class="box-item" > 
             <icon class="icon iconfont icon-pingjia"></icon>意见反馈
             <icon style="float:right;" class="icon iconfont icon-arrow-right"></icon>  
-            <text style="float:right;">17876659083</text>
         </view>
         <view class="box-item"> 
-            <icon class="icon iconfont icon-shezhi"></icon>设置
+            <icon class="icon iconfont icon-shezhi"></icon>商家入驻
             <icon style="float:right;" class="icon iconfont icon-arrow-right"></icon>  
             <text style="float:right;">17876659083</text>
         </view>
-        <view class="box-item" bindtap="goto"> 
+        <!-- <view class="box-item" bindtap="goto"> 
             <icon class="icon iconfont icon-weibiaoti-"></icon>联系我们
             <icon style="float:right;" class="icon iconfont icon-arrow-right"></icon>  
             <text style="float:right;">17876659083</text>
-        </view>
+        </view> -->
   </view>
 </view>

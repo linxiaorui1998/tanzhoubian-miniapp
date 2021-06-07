@@ -1,2 +1,40 @@
-<!--pages/myOrder/myOrder.wxml-->
-<text>pages/myOrder/myOrder.wxml</text>
+ <view class="restaurant">
+    <view class="restaurant-item" wx:for="{{list}}" wx:key="index">
+        <!-- 订单头部 -->
+       <view class="header">
+            <view class="image">
+              <image class="image1" src="{{item.restaurantImage}}"/>
+            </view>
+            <view class="header-name">
+                <view class="header-text">{{item.restaurantName}}</view>
+                <span wx:for="{{item.restaurantScore}}" class="icon iconfont icon-xingxing" wx:key="index"></span>
+                <span style="margin-left:10rpx;font-size:14px">{{item.restaurantAverage}}/人</span>
+            </view>      
+       </view>
+        <!-- 订单内容部分 -->
+        <view class="content1">
+            <image src="{{item.goodsImage}}" 
+            class="content-image"/>
+            <view style="flex:4;line-height:160rpx;margin-left:20rpx">
+                {{item.goodsName}}
+            </view>
+              
+            <view style="flex:2;line-height:160rpx;">
+                  ￥{{item.buy_price}}元
+            </view>     
+        </view> 
+        <view style="overflow:hidden">
+             <button class="button" wx:if="{{item.isComment}}">已评价</button>
+             <button class="button" wx:if="{{item.isComment == false && item.status == 2}}">去评价</button>
+             <button class="button" wx:if="{{item.isComment == false && item.status == 1}}"
+              bind:tap="reateQrcode" data-id='{{item._id}}'>去使用</button>
+              <button class="button" wx:if="{{item.isComment == false && item.status == 1}}"
+               data-id='{{item._id}}'>去退款</button>
+              <button class="button" wx:if="{{item.status == 3}}" data-id='{{item._id}}'>已退款</button>
+        </view>   
+    </view>
+    <van-overlay show="{{ show }}" bind:click="onClickHide">
+       <canvas class="code" canvas-id="{{id + time}}"
+       style="background:red;width: 400rpx;height:400rpx;margin:50% auto;" wx:if="{{show}}"/>
+    </van-overlay>
+</view>

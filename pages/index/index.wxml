@@ -14,7 +14,7 @@
     <view class="swiper" > 
         <swiper style="width:95%;height:100%;margin: 0 auto;" indicator-dots="true" autoplay="true">
             <swiper-item wx:for="{{banner}}" wx:key="index">
-                <image src="{{item}}" class="swiper-img"></image>
+                <image src="{{item.url}}" class="swiper-img"></image>
             </swiper-item>
         </swiper>
     </view>
@@ -26,21 +26,11 @@
         </view>
     </view>
 
-    <!-- 火爆餐厅 -->
-    <!-- <view class="hot">
-        <text class="title">火爆餐厅</text>
-        <view class="hot-list">
-            <view class="hot-item" wx:for="{{restaurantList}}"  wx:key="index"> 
-                <image src="{{item.url}}" ></image>
-                <text style="display:block;font-size:26rpx;font-weight:700">{{item.name}}</text>
-            </view>
-        </view>
-    </view> -->
-
     <!-- 限时特惠 -->
     <view class="time">
         <text class="title" style="display:block">限时特惠</text>
-        <view class="time-item" wx:for="{{timeList}}"  wx:key="index" bind:tap="buy" data-id="{{item._id}}">
+        <view class="time-item" wx:for="{{timeList}}"  wx:key="index" bind:tap="buy" 
+        data-id="{{item._id}}" data-restaurantID="{{item.restaurantID}}">
             <image src="{{item.image}}"></image>
             <text style="display:block;font-size:26rpx;font-weight:700">{{item.name}}</text>
         </view>

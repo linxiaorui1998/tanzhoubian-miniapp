@@ -1,5 +1,6 @@
+
  <view class="restaurant">
-    <view class="restaurant-item" wx:for="{{list}}" wx:key="index" wx:if="{{list.length}}">
+    <view class="restaurant-item" wx:for="{{list}}" wx:key="index">
         <!-- 订单头部 -->
        <view class="header">
             <view class="image">
@@ -28,13 +29,10 @@
              <button class="button" wx:if="{{item.isComment == false && item.status == 2}}">去评价</button>
              <button class="button" wx:if="{{item.isComment == false && item.status == 1}}"
               bind:tap="reateQrcode" data-id='{{item._id}}'>去使用</button>
-              <button class="button" wx:if="{{item.isComment == false && item.status == 1}}" 
-              data-id='{{item._id}}' bind:tap="applyRefund">去退款</button>
         </view>   
     </view>
     <van-overlay show="{{ show }}" bind:click="onClickHide">
        <canvas class="code" canvas-id="{{id + time}}"
        style="background:red;width: 400rpx;height:400rpx;margin:50% auto;" wx:if="{{show}}"/>
     </van-overlay>
-     <van-empty description="暂无订单" wx:if="{{!list.length}}"/>
 </view>

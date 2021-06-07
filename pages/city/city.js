@@ -32,8 +32,8 @@ Page({
       success: (result)=>{
         console.log(result);
         app.globalData.glo_nowCity = e.currentTarget.dataset.nowcity
-        app.globalData.longitude = result.data.split(',')[0]
-        app.globalData.latitude = result.data.split(',')[1]
+        app.globalData.longitude = result.data.message.split(',')[0]
+        app.globalData.latitude = result.data.message.split(',')[1]
         app.globalData.glo_nowCity = e.currentTarget.dataset.nowcity
         wx.switchTab({
           url:"../index/index"

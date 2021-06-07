@@ -8,14 +8,14 @@ Page({
   data: {
     message:null,
     type:null,
-    id:null
+    id:null,
+    restaurantID:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.id);
     let type = options.type
     let that = this
     wx.request({
@@ -24,7 +24,8 @@ Page({
         that.setData({
           message:data.data[0],
           type:type,
-          id:options.id
+          id:options.id,
+          restaurantID:options.restaurantID
         })
       }
     })
@@ -37,27 +38,42 @@ Page({
   buy:function(){
     let openid=null
     let that = this
+    var now = new Date();
+    var year = now.getFullYear(); //得到年份
+    var month = now.getMonth()+1;//得到月份
+    var date = now.getDate();//得到日期
+    var hour= now.getHours();//得到小时数
+    var minute= now.getMinutes();//得到分钟数
+    var second= now.getSeconds();//得到秒数
+    var time = year + '-' + month + '-' + date + ' ' + hour + ':' + minute + ':' + second
     wx.getStorage({
       key:'session',
       success:function(data) {
-          openid = data.data.openid
-      }
-    })
-    wx.request({
-      url: baseUrl + `order/add`,
-      method:"POST",
-      data:{
-        time:new Date(),
-        openid:openid,
-        buy_type: that.data.type,
-        buy_id: that.data.id,
+        openid = data.data.openid
+        wx.request({
+          url: baseUrl + `order/add`,
+          method:"POST",
+          data:{
+            time: time,
+            openid:openid,
+            buy_type: that.data.type,
+            buy_id: that.data.id,
+            restaurantID:that.data.restaurantID,
+            buy_price:1,
+            status:1
+          },
+          success:function(data){
+            wx.showToast({
+              title:"购买成功"
+            })
+          }
+       })
       },
-      success:function(data){
-        wx.showToast({
-          title:"购买成功"
-        })
+      fail:function (err) {
+          console.log(err,"我是错误");
       }
     })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

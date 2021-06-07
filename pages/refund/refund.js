@@ -29,7 +29,7 @@ Page({
           openid:res.data.openid
         })
         wx.request({
-          url: baseUrl + `order/canUseOrder?openid=${res.data.openid}&type=${1}`,
+          url: baseUrl + `order/canUseOrder?openid=${res.data.openid}&type=${3}`,
           success:function(data){
             that.setData({
               list:data.data
@@ -39,13 +39,6 @@ Page({
       }
     })
     
-  },
-  applyRefund(e){
-    let id = e.currentTarget.dataset.id 
-    console.log(id);
-    wx.navigateTo({
-      url:`../applyRefund/applyRefund?id=${id}`
-    })
   },
   reateQrcode(e) {
     var _id = e.currentTarget.dataset.id

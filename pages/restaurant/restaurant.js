@@ -54,6 +54,7 @@ Page({
     wx.getStorage({
       key: 'session',
       success: function(res){
+        console.log("session");
         // success
         that.setData({
           openid:res.data.openid
@@ -66,9 +67,12 @@ Page({
               that.setData({
                 menus: data.data
               })
-              console.log(data);
+              console.log(data,"菜单");
             }
           })
+      },
+      fail:function (err) {
+          console.log(err,'失败');
       }
     })
     wx.request({

@@ -11,6 +11,10 @@
     "pages/searchResult/searchResult",
     "pages/order/order",
     "pages/isUse/isUse",
+    "pages/Used/Used",
+    "pages/noCommend/noCommend",
+    "pages/refund/refund",
+    "pages/applyRefund/applyRefund",
     "pages/test/test"
 
   ],

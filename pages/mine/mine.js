@@ -1,12 +1,11 @@
 // pages/mine/mine.js
 const app = getApp()
-var baseUrl = require('../../utils/util')
+var baseUrl = require('../../utils/util').baseUrl
 Page({
   data: {
     avatarUrl:'',
     name:'',
     user: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   /**
@@ -14,24 +13,14 @@ Page({
    */
   onLoad: function (options) { 
     let that = this
-    wx.getSetting({
-      success (res){
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function(res) {
-              console.log(res.userInfo)
-            }
-          })
-        }
-      }
-    }),
     wx.checkSession({
       success: (result)=>{
         wx.getStorage({
           key: 'session',
           success: (result)=>{
-            that.getUser()
+            that.setData({
+              user:true
+            })
           },
         });
       },
@@ -42,41 +31,6 @@ Page({
       }
     });
   },
-  bindGetUserInfo (e) {
-    console.log(e.detail.userInfo)
-  },
-  //获取用户信息
-  getUserInfo:function(){
-    let that = this
-    wx.getUserInfo({
-      success(res){
-        console.log(res,"成功");
-        that.setData({
-          avatarUrl : res.userInfo.avatarUrl,
-          name : res.userInfo.nickName,
-          user: true
-        })
-      },
-      fail:function(error){
-        console.log(error,"失败");
-      }
-    });
-  },
-  // getNoUseOrder:function (params) {
-  //   let openid = null
-  //   wx.getStorage({
-  //     key:'session',
-  //     success:function (params) {
-  //       openid = params.data.openid
-  //     }
-  //   })
-  //   wx.request({
-  //     url: baseUrl + `order/nouse?openid=${openid}`,
-  //     success:function(data){
-  //       console.log(data);
-  //     }
-  //    })
-  // },
   goto:function(){
     wx.navigateTo({
       url: '../test/test',
@@ -87,21 +41,27 @@ Page({
     setTimeout(function(){
       wx.login({//首先调用微信官方登录接口获取用户信息，然后发动请求到后端，
         success:(result)=>{
-          var reqTask = wx.request({
+          console.log(baseUrl + 'login','登录1');
+          wx.request({
             url: baseUrl + 'login',
             data: {
               code: result.code
             },
             method: 'POST',
             success:(res)=>{
-              console.log(res);
+              console.log('登录2');
               wx.setStorage(
                 {
                 key: 'session',
                 data: res.data,
                 }
               );
-              that.getUserInfo()
+              that.setData({
+                user:true
+              })
+            },
+            fail:function (err) {
+                console.log(err,"错误");
             }
           })
         }
@@ -117,6 +77,21 @@ Page({
   isUse:function() {
     wx.navigateTo({
       url: '../isUse/isUse',
+    });
+  },
+  Used:function() {
+    wx.navigateTo({
+      url: '../Used/Used',
+    });
+  },
+  noCommend:function () {
+    wx.navigateTo({
+      url: '../noCommend/noCommend',
+    });
+  },
+  refund:function () {
+    wx.navigateTo({
+      url: '../refund/refund',
     });
   },
   /**

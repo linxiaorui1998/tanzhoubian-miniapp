@@ -1,0 +1,12 @@
+page {
+    background-color: #efefef;
+    box-sizing: border-box;
+    padding: 10px;
+  } 
+.box {
+    background-color: #fff;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}

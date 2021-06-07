@@ -96,6 +96,18 @@
         {
           "name": "pages/isUse/isUse",
           "pathName": "pages/isUse/isUse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/mine",
+          "pathName": "pages/mine/mine",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/applyRefund/applyRefund",
+          "pathName": "pages/applyRefund/applyRefund",
           "scene": null
         }
       ]

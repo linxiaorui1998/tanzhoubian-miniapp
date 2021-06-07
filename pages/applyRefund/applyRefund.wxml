@@ -1,0 +1,39 @@
+<view class="box">
+    <view style="margin-bottom:10px;font-weight:700">退款商品</view>
+    <van-card
+    num="1"
+    price="2.00"
+    desc="描述信息"
+    title="商品标题"
+    thumb="https://upload-image1998.oss-cn-guangzhou.aliyuncs.com/images/1619108404069.jpg"
+    />
+</view>
+  
+<view class="box">
+   <view style="margin:10px 0;font-weight:700">退款信息</view>
+   <view bind:tap="open">
+    <span>退款原因</span>
+    <span class="icon iconfont icon-arrow-right" style="float:right;color:#787588"></span>
+    <span style="float:right;color:#787588">{{form.reason != '' ? form.reason : '请选择'}}</span>
+   </view>
+   <van-action-sheet
+    show="{{ show }}"
+    actions="{{ actions }}"
+    bind:select="onSelect"/>
+   <view style="margin:10px 0;">
+        <span>退款金额</span>
+        <span style="float:right;color:red">￥{{3.2}}</span>
+   </view>
+</view>
+
+<view class="box">
+    <view style="margin:10px 0;font-weight:700">补充描述和凭证</view>
+    <textarea>
+        <view class="page__hd">
+          <view class="page__title">Uploader</view>
+        <view class="page__desc">上传组件</view>
+    </view>
+    </textarea>
+      
+</view>
+  
